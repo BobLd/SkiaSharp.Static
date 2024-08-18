@@ -26,7 +26,7 @@ jobs:
         working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
-          .\scripts\install-llvm.ps1
+          scripts\install-llvm.ps1
           New-Item out\windows\x64\ -ItemType Directory -ea 0
           cp args.gn out\windows\x64\
           cd skiasharp\externals\skia
