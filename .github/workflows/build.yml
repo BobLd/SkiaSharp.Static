@@ -4,9 +4,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ilammy/msvc-dev-cmd@v1
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           # build should be beside of git repo because it's submodule must be a empty dir when init.
           path: out/windows/x64/obj
@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir -p skiasharp && cd skiasharp
           git init && git remote add origin https://github.com/mono/SkiaSharp.git
-          git fetch --depth 1 origin release/2.88.6
+          git fetch --depth 1 origin release/2.88.8
           git checkout --recurse-submodules -q FETCH_HEAD
           git submodule update --init --depth 1
 
@@ -62,12 +62,12 @@ jobs:
           cd skiasharp\native\windows\libHarfBuzzSharp\bin\x64\Release
           7z a -y -mx9 libHarfBuzzSharp.7z ./libHarfBuzzSharp.lib
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: libSkiaSharp
           path: out/windows/x64/libSkiaSharp.7z
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: libHarfBuzzSharp
           path: skiasharp/native/windows/libHarfBuzzSharp/bin/x64/Release/libHarfBuzzSharp.7z
