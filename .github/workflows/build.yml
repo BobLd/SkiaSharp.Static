@@ -11,6 +11,10 @@ jobs:
           # build should be beside of git repo because it's submodule must be a empty dir when init.
           path: out/windows/x64/obj
           key: ${{ runner.os }}-skia-build-cache
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: "10.0"
       - name: Clone source
         working-directory: ${{github.workspace}}
         shell: bash
