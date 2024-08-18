@@ -11,9 +11,6 @@ jobs:
           # build should be beside of git repo because it's submodule must be a empty dir when init.
           path: out/windows/x64/obj
           key: ${{ runner.os }}-skia-build-cache
-      - uses: KyleMayes/install-llvm-action@v2
-        with:
-          version: "10.0"
           
       - name: Clone source
         working-directory: ${{github.workspace}}
@@ -29,6 +26,7 @@ jobs:
         working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
+          .\scripts\install-llvm.ps1
           New-Item out\windows\x64\ -ItemType Directory -ea 0
           cp args.gn out\windows\x64\
           cd skiasharp\externals\skia
